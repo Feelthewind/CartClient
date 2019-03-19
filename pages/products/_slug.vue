@@ -20,8 +20,19 @@
             <hr>
 
             <span class="tag is-rounded is-medium">
-              Product price
+              {{ product.price }}
             </span>
+          </section>
+
+          <section class="section">
+            <form action="">
+              <ProductVariation
+                v-for="(variations, type) in product.variations"
+                :type="type"
+                :variations="variations"
+                :key="type"
+              />
+            </form>
           </section>
         </div>
       </div>
@@ -30,11 +41,16 @@
 </template>
 
 <script>
+import ProductVariation from "@/components/products/ProductVariation";
 export default {
   data() {
     return {
       product: null
     };
+  },
+
+  components: {
+    ProductVariation
   },
 
   async asyncData({ params, app }) {
