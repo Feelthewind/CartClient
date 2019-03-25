@@ -87,7 +87,7 @@
               href="#"
               class="navbar-item"
             >
-              Cart (0)
+              Cart ({{ cartCount }})
             </a>
           </template>
         </div>
@@ -102,7 +102,8 @@ import { mapGetters } from "vuex";
 export default {
   computed: {
     ...mapGetters({
-      categories: "categories"
+      categories: "categories",
+      cartCount: "cart/count"
     })
   }
 };
