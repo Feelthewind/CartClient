@@ -83,12 +83,12 @@
             >
               Orders
             </a>
-            <a
-              href="#"
+            <nuxt-link
+              :to="{ name: 'cart' }"
               class="navbar-item"
             >
               Cart ({{ cartCount }})
-            </a>
+            </nuxt-link>
           </template>
         </div>
       </div>
