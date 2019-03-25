@@ -7,7 +7,7 @@
       >
     </td>
     <td>
-      {{ product.product.name }} / {{ product.name }}
+      {{ product.product.name }} / {{ product.type }} {{ product.name }}
     </td>
     <td width="160">
       <div class="field">
