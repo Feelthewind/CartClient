@@ -11,6 +11,13 @@
         />
       </template>
 
+      <template v-else-if="creating">
+        <ShippingAddressCreator
+          @cancel="creating = false"
+          @created="created"
+        />
+      </template>
+
       <template v-else>
         <template v-if="selectedAddress">
           <p>
@@ -31,6 +38,13 @@
               @click.prevent="selecting = true"
             >Change shipping address</a>
           </p>
+          <p class="control">
+            <a
+              href=""
+              class="button is-info"
+              @click.prevent="creating = true"
+            >Add an address</a>
+          </p>
         </div>
       </template>
 
@@ -40,18 +54,21 @@
 
 <script>
 import ShippingAddressSelector from "./ShippingAddressSelector";
+import ShippingAddressCreator from "./ShippingAddressCreator";
 
 export default {
   data() {
     return {
       selecting: false,
+      creating: false,
       localAddresses: this.addresses,
       selectedAddress: null
     };
   },
 
   components: {
-    ShippingAddressSelector
+    ShippingAddressSelector,
+    ShippingAddressCreator
   },
 
   props: {
@@ -74,6 +91,12 @@ export default {
     },
     switchAddress(address) {
       this.selectedAddress = address;
+    },
+    created(address) {
+      this.localAddresses.push(address);
+      this.creating = false;
+
+      this.switchAddress(address);
     }
   },
 
