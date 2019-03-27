@@ -3,7 +3,12 @@
     <div class="container is-fluid">
       <div class="columns">
         <div class="column is-three-quarters">
-          <ShippingAddress :addresses="addresses" />
+          {{ form }}
+
+          <ShippingAddress
+            :addresses="addresses"
+            v-model="form.address_id"
+          />
 
           <article class="message">
             <div class="message-body">
@@ -99,7 +104,10 @@ import ShippingAddress from "@/components/checkout/addresses/ShippingAddress";
 export default {
   data() {
     return {
-      addresses: []
+      addresses: [],
+      form: {
+        address_id: null
+      }
     };
   },
 
